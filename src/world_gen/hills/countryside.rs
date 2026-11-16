@@ -721,8 +721,8 @@ pub(super) fn spawn(
                         ))
                         .id();
                     if let Some(props) = &art.props {
-                        let conifers = ["TREE4A2", "TREE4B2", "TREE5A2", "TREEF2", "TREEU12"];
-                        let broadleaves = ["TREEH2", "TREOAKA2", "TREOAKB2", "TREEK2", "TREEL2"];
+                        let conifers = super::woodland::tree_lods::CONIFERS;
+                        let broadleaves = super::woodland::tree_lods::BROADLEAVES;
                         let variant = (seed as usize / 7) % conifers.len();
                         let name = if row == 0 && s < 5200 {
                             conifers[variant]

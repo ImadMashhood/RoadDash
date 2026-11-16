@@ -5086,3 +5086,12 @@ placement density across the existing roadside, middle, and backdrop
 footprints. The distant tier uses six-triangle silhouettes with a
 minimum viewing distance in the existing fade.
 [Evidence](testing/hills-woodland-restored/REPORT.md).
+
+
+## ADR213 — Derive Hills woodland LODs from the roadside tree families (2026-11-15)
+
+Bake three simplified meshes per authored tree family using its crown and
+trunk geometry and foliage and bark textures. Choose the family and orientation
+once per placement and share them across the batched LODs. Keep collision
+independent of the displayed mesh.
+[Evidence](testing/hills-tree-families/REPORT.md).

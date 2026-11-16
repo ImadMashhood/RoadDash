@@ -1,0 +1,11 @@
+{
+  "roadside_trees": 3334,
+  "middle_trees": 8495,
+  "backdrop_trees": 25851,
+  "total_trees": 37680,
+  "backdrop_batches": 109,
+  "woodland_triangles_across_all_lods": 1740688,
+  "road_support_probes": 1506,
+  "maximum_support_error_m": 0.025834083557128906,
+  "screenshots_completed": 11
+}

@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-15 — Hills woodland tree families
+
+- Derived three batched LOD meshes from each of the ten detailed roadside tree variants.
+- Baked foliage and bark colors from the authored textures and shared placement transforms across LOD transitions.
+
 ## 2026-11-15 — Restore Hills tree distribution (ADR212)
 
 - Restored the original tree distribution at roughly triple density across the verge, hillsides, and backdrop.

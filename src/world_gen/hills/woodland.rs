@@ -4,6 +4,7 @@ use super::{HillsSolid, countryside, geometry, props::Model};
 use crate::{track::Track, world::Obstacle};
 use bevy::{camera::visibility::VisibilityRange, light::NotShadowCaster, prelude::*};
 use bevy_rapier3d::prelude::*;
+pub(super) mod tree_lods;
 
 #[derive(Component)]
 pub struct WoodlandBatch;
@@ -82,7 +83,6 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
 }
 const BACKDROP_TILE: f32 = 160.;
 const BACKDROP_ROWS: u32 = 21;
-const SILHOUETTE_TRIANGLES: usize = 6;
 
 fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
     let min = track.bounds.0.xz() - Vec2::splat(320.);
@@ -132,21 +132,6 @@ fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
     batches
 }
 
-fn simpler_tree(model: &mut Model, tree: Tree, origin: Vec3, green: [f32; 3]) {
-    let p = tree.p - origin;
-    model.open_crown(p, tree.height * 0.25, tree.height * 0.77, green);
-    model.open_crown(
-        p + Vec3::Y * tree.height * 0.34,
-        tree.height * 0.18,
-        tree.height * 0.66,
-        green.map(|value| value * 1.14),
-    );
-}
-
-fn silhouette(model: &mut Model, tree: Tree, origin: Vec3, green: [f32; 3]) {
-    model.open_crown(tree.p - origin, tree.height * 0.23, tree.height, green);
-}
-
 pub fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -155,7 +140,8 @@ pub fn spawn(
 ) {
     let material = materials.add(StandardMaterial {
         base_color: Color::WHITE,
-        perceptual_roughness: 1.,
+        perceptual_roughness: 0.68,
+        metallic: 0.08,
         ..default()
     });
     let mut census = WoodlandCensus::default();
@@ -167,34 +153,26 @@ pub fn spawn(
         let mut trunks = vec![];
         for tree in trees {
             let p = tree.p - origin;
-            model.block(
-                p + Vec3::Y * tree.height * 0.4,
-                Vec3::new(0.55, tree.height * 0.8, 0.55),
-                [0.27, 0.20, 0.12],
-            );
-            let tint = noise(tree.seed + 5);
-            let green = [0.12 + tint * 0.05, 0.22 + tint * 0.09, 0.09 + tint * 0.04];
-            for tier in 0..3 {
-                let base = p + Vec3::Y * tree.height * (0.18 + tier as f32 * 0.22);
-                model.cone(
-                    base,
-                    tree.height * (0.25 - tier as f32 * 0.045),
-                    tree.height * 0.42,
-                    green,
+            let (templates, transform) = tree_lods::fitted(tree.seed, tree.height, p);
+            for (mesh, template) in [&mut model, &mut middle, &mut far]
+                .into_iter()
+                .zip(templates)
+            {
+                mesh.append(
+                    &template.positions,
+                    &template.colors,
+                    &template.triangles,
+                    transform,
                 );
+                census.triangles += template.triangles.len();
             }
-            simpler_tree(&mut middle, tree, origin, green);
-            silhouette(&mut far, tree, origin, green);
-            census.triangles += SILHOUETTE_TRIANGLES;
-            census.middle_triangles += 12;
-            census.triangles += 12;
+            census.middle_triangles += templates[1].triangles.len();
             trunks.push((
                 p + Vec3::Y * tree.height * 0.4,
                 Quat::IDENTITY,
                 Collider::cylinder(tree.height * 0.4, 0.28),
             ));
             census.trees += 1;
-            census.triangles += 60; // 12 trunk + 3 x 16 closed eight-sided crowns.
         }
         commands.spawn((
             Transform::from_translation(origin),
@@ -247,11 +225,11 @@ pub fn spawn(
         census.backdrop_batches += 1;
         census.trees += trees.len();
         census.batches += 1;
-        census.triangles += trees.len() * SILHOUETTE_TRIANGLES;
         for tree in trees {
-            let tint = noise(tree.seed + 5);
-            let green = [0.095 + 0.06 * tint, 0.17 + 0.12 * tint, 0.075 + 0.06 * tint];
-            silhouette(&mut model, tree, origin, green);
+            let (templates, transform) = tree_lods::fitted(tree.seed, tree.height, tree.p - origin);
+            let far = &templates[2];
+            model.append(&far.positions, &far.colors, &far.triangles, transform);
+            census.triangles += far.triangles.len();
         }
         commands.spawn((
             Mesh3d(meshes.add(model.mesh())),
@@ -277,14 +255,23 @@ mod tests {
         let track = Track::hills().unwrap();
         let batches = backdrop(&track);
         let count: usize = batches.iter().map(|(_, trees)| trees.len()).sum();
+        let triangles: usize = batches
+            .iter()
+            .flat_map(|(_, trees)| trees)
+            .map(|tree| {
+                tree_lods::fitted(tree.seed, tree.height, tree.p).0[2]
+                    .triangles
+                    .len()
+            })
+            .sum();
         println!(
             "Hills backdrop: {count} trees, {} batches, {} triangles",
             batches.len(),
-            count * SILHOUETTE_TRIANGLES
+            triangles
         );
         assert!((23_000..=28_000).contains(&count));
         assert!(batches.len() <= 160);
-        assert!(count * SILHOUETTE_TRIANGLES <= 168_000);
+        assert!(triangles <= 616_000);
         for (_, trees) in &batches {
             assert!(trees.len() <= (BACKDROP_ROWS * BACKDROP_ROWS) as usize);
             for tree in trees {

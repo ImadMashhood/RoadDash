@@ -139,32 +139,23 @@ impl Model {
             }
         }
     }
-    pub(super) fn cone(&mut self, base: Vec3, radius: f32, height: f32, color: [f32; 3]) {
-        let k = self.vertices.len() as u32;
-        self.vertices.extend([base, base + Vec3::Y * height]);
-        self.colors.extend([[color[0], color[1], color[2], 1.]; 2]);
-        for i in 0..8 {
-            let angle = i as f32 * std::f32::consts::TAU / 8.;
-            self.vertices
-                .push(base + Vec3::new(angle.cos(), 0., angle.sin()) * radius);
-            self.colors.push([color[0], color[1], color[2], 1.]);
-        }
-        for i in 0..8 {
-            let a = k + 2 + i;
-            let b = k + 2 + (i + 1) % 8;
-            self.indices.extend([[k + 1, b, a], [k, a, b]]);
-        }
-    }
-    pub(super) fn open_crown(&mut self, base: Vec3, radius: f32, height: f32, color: [f32; 3]) {
-        let tip = self.vertices.len() as u32;
-        self.vertices.push(base + Vec3::Y * height);
-        for i in 0..6 {
-            let angle = i as f32 * std::f32::consts::TAU / 6.;
-            self.vertices
-                .push(base + Vec3::new(angle.cos(), 0., angle.sin()) * radius);
-            self.indices.push([tip, tip + 1 + (i + 1) % 6, tip + 1 + i]);
-        }
-        self.colors.extend([[color[0], color[1], color[2], 1.]; 7]);
+    pub(super) fn append(
+        &mut self,
+        positions: &[[f32; 3]],
+        colors: &[[f32; 3]],
+        triangles: &[[u32; 3]],
+        transform: Transform,
+    ) {
+        let start = self.vertices.len() as u32;
+        self.vertices.extend(
+            positions
+                .iter()
+                .map(|p| transform.transform_point(Vec3::from_array(*p))),
+        );
+        self.colors
+            .extend(colors.iter().map(|[r, g, b]| [*r, *g, *b, 1.]));
+        self.indices
+            .extend(triangles.iter().map(|face| face.map(|index| start + index)));
     }
     pub(super) fn hull(&self) -> Collider {
         Collider::convex_hull(&self.vertices).expect("original scenery convex hull")
