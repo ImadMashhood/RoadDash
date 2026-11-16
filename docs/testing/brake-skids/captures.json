@@ -1,0 +1,35 @@
+{
+  "effects": {
+    "brake_marks": 35,
+    "brake_smoke": 6,
+    "ground_shimmer": 1.0,
+    "hanabi": false,
+    "phase": "Racing",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": [
+      0.0,
+      0.0,
+      0.0,
+      3.1500000953674316
+    ],
+    "shake": 0.0,
+    "shot": "brake",
+    "speed_mps": 39.96126174926758,
+    "station": 10532.4814453125
+  },
+  "control": {
+    "brake_marks": 0,
+    "brake_smoke": 0,
+    "ground_shimmer": 0.0,
+    "hanabi": false,
+    "phase": "Racing",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "brake",
+    "speed_mps": 39.96126174926758,
+    "station": 10532.4814453125
+  }
+}

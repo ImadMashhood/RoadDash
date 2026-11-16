@@ -1,4 +1,5 @@
 //! Bounded, presentation-only map atmosphere. All meshes are allocated at world setup.
+pub(crate) mod braking;
 pub mod survey;
 use crate::{
     game::{ChaseCamera, Phase, Race},
@@ -173,6 +174,7 @@ pub fn spawn(
         return;
     }
     let Some(images) = images else { return };
+    braking::spawn(commands, meshes, materials, images, level);
     let is_hills = track.is_hills();
     // Metropolis and the authored legacy city share one restrained vent-steam cue.
     let city = track.metropolis.is_some() || track.city_surface.is_some();

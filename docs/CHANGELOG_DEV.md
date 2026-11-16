@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-15 — Braking feedback (ADR210)
+
+- Added pooled asphalt skid marks and smoke at the local rider’s rear tire.
+
 ## 2026-11-15 — Hills cloud placement (ADR209)
 
 - Spread Hills cumulus banks across the sky with varied altitudes and a distributed low-quality subset.

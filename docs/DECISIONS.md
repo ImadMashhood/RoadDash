@@ -5061,3 +5061,11 @@ Lay out Hills clouds in world space across the route and surrounding terrain.
 Jitter position, altitude, and scale from the track scenery seed. Limit the
 existing shared volume renderer to 24 full-quality banks and 16 at low quality.
 [Evidence](testing/hills-cloud-field/REPORT.md).
+
+
+## ADR210 — Skid marks and smoke on hard paved braking (2026-11-15)
+
+Use the existing service brake and rear-wheel contact to feed a fixed
+presentation pool. Return a visual cue for fast full-brake applications
+and scale it with tire slip. Keep the tire-force calculation independent
+of the effects. [Evidence](testing/brake-skids/REPORT.md).

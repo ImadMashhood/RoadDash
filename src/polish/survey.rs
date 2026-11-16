@@ -22,8 +22,8 @@ struct Survey {
 pub(crate) fn install(app: &mut App) {
     let shot = std::env::var("ROADDASH_POLISH_CAPTURE").unwrap_or_else(|_| "road".into());
     assert!(
-        matches!(shot.as_str(), "road" | "grid" | "speed"),
-        "polish capture must be road, grid or speed"
+        matches!(shot.as_str(), "road" | "grid" | "speed" | "brake"),
+        "polish capture must be road, grid, speed or brake"
     );
     app.insert_resource(Survey {
         shot,
@@ -84,6 +84,13 @@ fn capture(
         Without<ChaseCamera>,
     >,
     mut camera: Query<&mut Transform, With<ChaseCamera>>,
+    brake_visuals: Query<
+        (Has<crate::map_fx::braking::SkidMark>, &Visibility),
+        Or<(
+            With<crate::map_fx::braking::SkidMark>,
+            With<crate::map_fx::braking::BrakePuff>,
+        )>,
+    >,
     mut exit: MessageWriter<AppExit>,
 ) {
     if matches!(state.get(), AppScreen::Boot | AppScreen::Loading) {
@@ -105,6 +112,7 @@ fn capture(
     };
     let road = survey.shot == "road";
     let grid = survey.shot == "grid";
+    let brake = survey.shot == "brake";
     let station = if road {
         4835.
     } else if grid {
@@ -147,7 +155,10 @@ fn capture(
             }
         }
     }
-    if grid || !road {
+    if brake && survey.frame >= 34 {
+        keys.release(KeyCode::KeyW);
+        keys.press(KeyCode::KeyS);
+    } else if !road {
         keys.press(KeyCode::KeyW);
     }
     if road && let Ok(mut camera) = camera.single_mut() {
@@ -159,13 +170,29 @@ fn capture(
         )
         .looking_at(pose.translation + Vec3::Y * 0.95, Vec3::Y);
     }
+    if brake && let Ok(mut camera) = camera.single_mut() {
+        let heading = pose.rotation * Vec3::Z;
+        let eye = pose.translation - heading * 10. + pose.rotation * Vec3::X * 4. + Vec3::Y * 3.;
+        *camera = Transform::from_translation(eye)
+            .looking_at(pose.translation - heading * 3. + Vec3::Y * 0.8, Vec3::Y);
+    }
     if survey.frame == 70 {
+        let brake_count = |mark| {
+            brake_visuals
+                .iter()
+                .filter(|(is_mark, visibility)| {
+                    *is_mark == mark && **visibility != Visibility::Hidden
+                })
+                .count()
+        };
         let receipt = serde_json::json!({
             "shot":survey.shot,
             "station":rider.progress,
             "speed_mps":rider.speed,
             "phase":format!("{:?}", race.phase),
             "rev_rpm":rev.as_ref().map(|rev| rev.0),
+            "brake_marks":brake_count(true),
+            "brake_smoke":brake_count(false),
             "puffs":puffs.iter().filter(|visibility| **visibility != Visibility::Hidden).count(),
             "shader_weights":effects.iter().map(|effect| effect.weights.to_array()).next(),
             "ground_shimmer":effects.iter().map(|effect| effect.ground_strength.x).next().unwrap_or(0.),

@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-15 brake skid feedback (ADR210): FX-BRAKE-SKID-01 verified in the Hills comparison. 257 verified / 386 open.
+[Evidence](testing/brake-skids/REPORT.md).
+
 2026-11-15 Hills cloud placement (ADR209): broader spatial coverage, with a bounded low-quality subset. RFU-SKY-05 remains open for other maps and full-route measurements.
 [Evidence](testing/hills-cloud-field/REPORT.md).
 
@@ -848,6 +851,8 @@ pending terrain and crossing verification gates.
 - [x] **P12-001** Award and persist credits, wins, race count, and a best time; write profile updates through a temporary file and atomic rename in the user data directory. Evidence: [profile](../src/game.rs).
 
 - [x] **P12-002** Test that a finished race pays once across subsequent updates. Evidence: `finish_awards_results_once_and_button_starts_next_race` in [game tests](../src/game.rs).
+
+- [x] **FX-BRAKE-SKID-01** Add visible rubber marks and smoke to hard paved braking for clearer traction feedback. Part 15, depends on brake input, rear tire contact, and map effects quality. Accept a grounded rear trail, short-lived smoke and fixed budgets. Verify hard braking, normal braking, reverse, and matched native views. [Evidence](testing/brake-skids/REPORT.md).
 
 - [x] **UI-01** Catalog original UI/media and deliver an editable artist skeleton. Reason: user will create replacement art and needs all source references, IDs and screen context first; originating part: 15; dependencies: P00-006 and the user-supplied local game/reference R01; acceptance: complete supplied IMAGES/embedded-icon inventory, original screen/popup/native-dialog geometry, external-only reference gallery, frozen IDs/dimensions/replacement briefs and functioning standalone preview/progress workflow; verification: [142 UI resources,29 populated screen entries,13 popups,7 unique Windows dialogs,28 draft pages,63 SVGs,17 Python tests and browser checks](ui/README.md). No original media shipped and no game UI replaced; artwork/Bevy integration remain UI-02/P15-006.
 

@@ -199,7 +199,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**256 verified tasks complete; 386 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**257 verified tasks complete; 386 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -217,9 +217,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 256 verified complete |
+| [00](#part-00) | Completed and verified foundations | 257 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
-| [00](#part-00) | Completed and verified foundations | 256 verified complete |
+| [00](#part-00) | Completed and verified foundations | 257 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
@@ -498,8 +498,9 @@ Everything checked off lives here, grouped by the original system. These are ver
 </details>
 
 <details>
-<summary>Presentation, audio, UI, and accessibility — 5 verified tasks</summary>
+<summary>Presentation, audio, UI, and accessibility — 6 verified tasks</summary>
 
+- [x] **FX-BRAKE-SKID-01** Add visible rubber marks and smoke to hard paved braking for clearer traction feedback. Part 15, depends on brake input, rear tire contact, and map effects quality. Accept a grounded rear trail, short-lived smoke and fixed budgets. Verify hard braking, normal braking, reverse, and matched native views. [Evidence](docs/testing/brake-skids/REPORT.md).
 - [x] **UI-01** Catalog original UI/media and deliver an editable artist skeleton. Reason: user will create replacement art and needs all source references, IDs and screen context first; originating part: 15; dependencies: P00-006 and the user-supplied local game/reference R01; acceptance: complete supplied IMAGES/embedded-icon inventory, original screen/popup/native-dialog geometry, external-only reference gallery, frozen IDs/dimensions/replacement briefs and functioning standalone preview/progress workflow; verification: [142 UI resources,29 populated screen entries,13 popups,7 unique Windows dialogs,28 draft pages,63 SVGs,17 Python tests and browser checks](docs/ui/README.md). No original media shipped and no game UI replaced; artwork/Bevy integration remain UI-02/P15-006.
 - [x] **UI-03** Provide original-art generation prompts for every UI screen and source-image replacement. Reason: user will generate the art independently; originating part: 15; dependencies: UI-01 catalog and current rider/bike references; acceptance: all 28 proposed screens and 142 UI image IDs / 66 master families have specific subject, composition, quiet UI areas, aspect/export and identity/variant guidance without baked text or premature approval; verification: [screen and per-image prompts](docs/ui/SCREEN_GENERATION_PROMPTS.md), machine-readable coverage and deterministic rebuild tests in [performance/UI evidence](docs/testing/performance-ui-prompts/README.md). All production art and UI-02 integration gates remain open.
 - [x] **UI-04** Generate and place all 28 proposed screen drafts in the artist preview. Reason: user requests ChatGPT image generation and usable screen placement; originating part: 15; dependencies: UI-03 prompts and existing project model views; acceptance: one saved traceable PNG per screen, real alpha for HUD/pause/confirmation, persistent matching-page art, live separate labels/buttons, gallery/download/review metadata and retained wireframe/source-resource workflows; verification: [28 decoded browser pages, PNG/alpha/hash checks and review/download workflow](docs/testing/generated-ui/README.md). The first batch’s art direction was subsequently rejected; the user approved the grotesque painted style and four additional original scene variations are saved for individual review (docs/ui/UI_ART_DIRECTION.md). This verifies historical draft availability only; user art approval, layered/high-resolution masters and native Bevy integration remain UI-05/UI-02.

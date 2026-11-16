@@ -3,7 +3,7 @@
 set -euo pipefail
 repo=$(cd "$(dirname "$0")/.." && pwd)
 if [[ $# -lt 4 || $# -gt 5 ]]; then
-    echo "Usage: $0 out-dir label road|grid|speed flags [baseline|ambient|poly|procedural]" >&2
+    echo "Usage: $0 out-dir label road|grid|speed|brake flags [baseline|ambient|poly|procedural]" >&2
     exit 2
 fi
 mkdir -p "$1"

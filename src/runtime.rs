@@ -549,6 +549,12 @@ impl Plugin for RoadPresentationPlugin {
                     .chain(),
             )
             .add_systems(
+                FixedUpdate,
+                crate::map_fx::braking::update
+                    .after(SimSet::AfterPhysics)
+                    .run_if(resource_exists::<crate::map_fx::braking::BrakeFx>),
+            )
+            .add_systems(
                 PostUpdate,
                 game::camera.before(bevy::transform::TransformSystems::Propagate),
             );

@@ -63,6 +63,7 @@ pub struct BikeState {
     pub yaw_rate: f32,
     pub intent: rr_core::VehicleIntent,
     pub grounded: [bool; 2],
+    pub(crate) rear_contact: Option<(Vec3, Vec3)>,
     pub suspension: [f32; 2],
     pub rpm: f32,
     pub gear: usize,
@@ -164,6 +165,7 @@ pub fn forces(
         &mut bikes
     {
         *force = default();
+        state.rear_contact = None;
         state.impact_velocity = v.linear;
         let finished = r.finished.is_some();
         // The results menu pauses Rapier. Keep the field's momentum for
@@ -277,6 +279,9 @@ pub fn forces(
                 force.torque +=
                     (contact - (t.translation + t.rotation * Vec3::Y * 0.55)).cross(hit.normal * f);
                 state.grounded[i] = true;
+                if i == 0 {
+                    state.rear_contact = Some((contact, hit.normal));
+                }
                 state.suspension[i] = compression;
                 state.wheel_forces[i] = f;
                 normal += hit.normal;
