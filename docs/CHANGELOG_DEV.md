@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-15 — Restore Hills tree distribution (ADR212)
+
+- Restored the original tree distribution at roughly triple density across the verge, hillsides, and backdrop.
+
 ## 2026-11-15 — Hills woodland and heat tuning (ADR211)
 
 - Thinned the mountain verge, roughly tripled the outer woodland density, and pushed backdrop silhouettes away from close views.

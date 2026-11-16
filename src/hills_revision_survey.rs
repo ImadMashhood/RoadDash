@@ -415,7 +415,7 @@ pub fn run(
         assert_eq!(tractor_count, crate::heavy_traffic::TRACTORS);
         assert!(state.semi_moved > 20. && state.tractor_moved > 10.);
         assert!(city.buildings > 100 && census.farms >= 6);
-        assert!(census.trees > 450 && woodland.trees > 10_000);
+        assert!(census.trees > 2_400 && woodland.backdrop_trees > 23_000);
         if !perf {
             if assisted {
                 assert!(

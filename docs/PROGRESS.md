@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-15 Hills wooded slopes (ADR212). Restored the original distribution and scaled all three Hills tree layers. HILLS-TREE-LOD-02 retains the full-route performance gate.
+[Evidence](testing/hills-woodland-restored/REPORT.md).
+
 2026-11-15 Hills woodland and heat tuning (ADR211). HILLS-TREE-LOD-02, RFU-FX-01, and POLISH-POST-FX-01 retain full-route acceptance.
 [Evidence](testing/hills-woodland-heat/REPORT.md).
 
@@ -1509,7 +1512,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Review matched captures, road lighting and distance shimmer on the target GPU before choosing a material. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. The Hills verge now grades into denser outer woodland, with roughly triple the distant sampling density and a minimum camera distance for backdrop silhouettes. [Placement evidence](testing/hills-woodland-heat/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density and a minimum camera distance for backdrop silhouettes. [Placement evidence](testing/hills-woodland-restored/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
 

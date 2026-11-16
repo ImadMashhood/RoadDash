@@ -5077,3 +5077,12 @@ Grade mountain tree density by route distance and fade backdrop silhouettes
 in beyond close camera views. Scale ground refraction by 0.20 and drive
 exhaust refraction by engine RPM with a 0.50 ceiling.
 [Evidence](testing/hills-woodland-heat/REPORT.md).
+
+
+## ADR212 — Restore the Hills tree distribution at higher density (2026-11-15)
+
+Restore the original verge offsets and woodland clearings. Increase
+placement density across the existing roadside, middle, and backdrop
+footprints. The distant tier uses six-triangle silhouettes with a
+minimum viewing distance in the existing fade.
+[Evidence](testing/hills-woodland-restored/REPORT.md).

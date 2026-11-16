@@ -34,16 +34,17 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
     for start in (1600..5200).step_by(128) {
         for side in [-1., 1.] {
             let mut trees = vec![];
-            for i in 0..8_u32 {
-                for row in 0..9_u32 {
+            for i in 0..12_u32 {
+                for row in 0..18_u32 {
                     let seed = start as u32 * 179 + i * 73 + row * 919 + u32::from(side > 0.);
                     // Correlated clearings break up the rows; jitter breaks the grid.
-                    let s = start as f32 + i as f32 * 16. + noise(seed) * 13.;
-                    let lane = side * (110. + row as f32 * 21. + noise(seed + 2) * 17.);
-                    let clearing = 0.82 + 0.18 * (s * 0.019 + row as f32 * 0.8).sin();
-                    if s > 5200. || noise(seed + 1) > woodland_density(lane.abs(), clearing) {
+                    let s = start as f32 + (i as f32 + noise(seed) * 0.81) * (128. / 12.);
+                    if s > 5200.
+                        || noise(seed + 1) < 0.21 + 0.19 * (s * 0.019 + row as f32 * 0.4).sin()
+                    {
                         continue;
                     }
+                    let lane = side * (110. + (row as f32 + noise(seed + 2) * 0.81) * 10.5);
                     let Some((mut p, _)) = super::props::site(track, 0, s, lane, 4.) else {
                         continue;
                     };
@@ -80,15 +81,7 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
     batches
 }
 const BACKDROP_TILE: f32 = 160.;
-const BACKDROP_ROWS: u32 = 28;
-const BACKDROP_NEAR: f32 = 325.;
-const BACKDROP_FAR: f32 = 820.;
-
-fn woodland_density(distance: f32, clearing: f32) -> f32 {
-    let uphill = ((distance - 100.) / 550.).clamp(0., 1.);
-    let uphill = uphill * uphill * (3. - 2. * uphill);
-    (0.24 + 0.70 * uphill) * clearing
-}
+const BACKDROP_ROWS: u32 = 21;
 const SILHOUETTE_TRIANGLES: usize = 6;
 
 fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
@@ -106,23 +99,20 @@ fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
                     let seed = (x * 1259 + z * 6739 + i * 73 + j * 919).wrapping_add(7919);
                     let offset = Vec2::new(i as f32 + noise(seed), j as f32 + noise(seed + 1));
                     let surface = base + offset * spacing;
-                    let clearing =
-                        0.78 + 0.22 * (surface.x * 0.021 + (surface.y * 0.012).sin()).sin();
-                    if noise(seed + 2) > woodland_density(BACKDROP_FAR, clearing) {
+                    if noise(seed + 2)
+                        < 0.24 + 0.20 * (surface.x * 0.021 + (surface.y * 0.012).sin()).sin()
+                    {
                         continue;
                     }
                     let p = Vec3::new(surface.x, 0., surface.y);
                     let (s, _, distance) = track.project(p, 0.);
                     if !(1250. ..5300.).contains(&s)
-                        || !(BACKDROP_NEAR..BACKDROP_FAR).contains(&distance)
+                        || !(325. ..820.).contains(&distance)
                         || track
                             .hills_branch
                             .as_ref()
                             .is_some_and(|branch| !branch.scenery_fits(p, 5., 140.))
                     {
-                        continue;
-                    }
-                    if noise(seed + 2) > woodland_density(distance, clearing) {
                         continue;
                     }
                     let y = geometry::ground_height(track, p.x, p.z);
@@ -283,14 +273,6 @@ pub fn spawn(
 mod tests {
     use super::*;
     #[test]
-    fn woodland_density_builds_away_from_road_with_space_for_clearings() {
-        for (near, far) in [(110., 260.), (325., 500.), (500., 750.)] {
-            assert!(woodland_density(near, 1.) < woodland_density(far, 1.));
-        }
-        assert!(woodland_density(600., 0.56) < woodland_density(600., 1.));
-    }
-
-    #[test]
     fn backdrop_places_thousands_of_grounded_trees_with_bounded_geometry() {
         let track = Track::hills().unwrap();
         let batches = backdrop(&track);
@@ -300,9 +282,9 @@ mod tests {
             batches.len(),
             count * SILHOUETTE_TRIANGLES
         );
-        assert!((30000..=42000).contains(&count));
+        assert!((23_000..=28_000).contains(&count));
         assert!(batches.len() <= 160);
-        assert!(count * SILHOUETTE_TRIANGLES <= 252_000);
+        assert!(count * SILHOUETTE_TRIANGLES <= 168_000);
         for (_, trees) in &batches {
             assert!(trees.len() <= (BACKDROP_ROWS * BACKDROP_ROWS) as usize);
             for tree in trees {
@@ -320,7 +302,11 @@ mod tests {
         let track = Track::hills().unwrap();
         let batches = plan(&track);
         let count: usize = batches.iter().map(Vec::len).sum();
-        assert!((850..4000).contains(&count), "trees: {count}");
+        println!(
+            "Hills middle woodland: {count} trees in {} batches",
+            batches.len()
+        );
+        assert!((4_000..=12_000).contains(&count), "trees: {count}");
         assert!(batches.len() <= 58);
         for tree in batches.iter().flatten() {
             assert!((tree.p.y - geometry::ground_height(&track, tree.p.x, tree.p.z)).abs() < 2.);
