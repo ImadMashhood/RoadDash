@@ -5023,3 +5023,12 @@ escape searches back to ordinary traffic planning. Make the cattle paths
 more irregular while retaining their phase and cached ground, and use a
 six-triangle far tree profile to place denser woodland.
 [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+
+## ADR206 — Hills road and shoulder render thickness (2026-11-15)
+
+Extend exposed Hills road and shoulder edges downward into resident
+terrain. Use the original triangles for physics and preserve the
+riding surface height. Separate nearly coplanar layers with depth
+offsets and retain the suspension deck and imported city geometry.
+[Evidence](testing/hills-road-thickness/REPORT.md).

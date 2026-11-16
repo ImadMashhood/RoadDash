@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-15 Hills road thickness (ADR206): HILLS-ROAD-DEPTH-01 verified.
+255 verified / 382 open. [Implementation and evidence](testing/hills-road-thickness/REPORT.md).
+
 2026-11-15 Hills contact, bridge and scenery (ADR205): verified
 RIDER-LANDING-01 and COMBAT-KICK-PUSH-01. Added four active requirements for
 escape fallback, cattle spacing, bridge continuity and woodland LOD.
@@ -610,6 +613,8 @@ pending terrain and crossing verification gates.
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **HILLS-ROAD-DEPTH-01** Close visible gaps below the Hills asphalt and dirt shoulders. This Part 06 task builds on HILLS-BRIDGE-FLOOR-01 and the resident terrain mesh. Verify buried render walls, stable overlap ordering, and unchanged top geometry and collision in the dunes and on both routes. [Evidence](testing/hills-road-thickness/REPORT.md).
 
 - [x] **RIDER-LANDING-01** Wipe out a mounted rider who lands on another mounted rider. This Part 01 task builds on existing rear contacts and recovery. An actual descending contact must eject the upper rider while preserving ordinary side impacts. Verified through contact rules and a physical rig test. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
 

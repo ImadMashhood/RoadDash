@@ -83,6 +83,62 @@ fn shoulders(track: &Track, route: usize, a: f32, b: f32) -> (Vec<Vec3>, Vec<[u3
     (v, ix)
 }
 
+/// Add a separate strip so vertical faces do not change the top normals.
+fn append_skirt(
+    edge: impl IntoIterator<Item = Vec3>,
+    ground: impl Fn(Vec3) -> f32,
+    reverse: bool,
+    vertices: &mut Vec<Vec3>,
+    triangles: &mut Vec<[u32; 3]>,
+) -> usize {
+    let start = vertices.len();
+    for (sample, top) in edge.into_iter().enumerate() {
+        let i = vertices.len() as u32;
+        vertices.extend([top, top.with_y(top.y.min(ground(top)) - 0.3)]);
+        if sample != 0 {
+            let mut faces = [[i - 2, i - 1, i], [i, i - 1, i + 1]];
+            if reverse {
+                for face in &mut faces {
+                    face.swap(1, 2);
+                }
+            }
+            triangles.extend(faces);
+        }
+    }
+    start
+}
+
+fn road_shell(
+    top: &[Vec3],
+    top_triangles: &[[u32; 3]],
+    ground: impl Fn(Vec3) -> f32,
+    cap_end: bool,
+) -> (Vec<Vec3>, Vec<[u32; 3]>) {
+    let mut vertices = top.to_vec();
+    let mut triangles = top_triangles.to_vec();
+    let [left, right] = [0, 1].map(|side| {
+        append_skirt(
+            top.iter().skip(side).step_by(2).copied(),
+            &ground,
+            side == 0,
+            &mut vertices,
+            &mut triangles,
+        ) as u32
+    });
+    for section in 0..(top.len() as u32 / 2 - 1) {
+        let l = left + section * 2 + 1;
+        let r = right + section * 2 + 1;
+        triangles.extend([[l, l + 2, r], [r, l + 2, r + 2]]);
+    }
+    if cap_end {
+        let last = top.len() as u32 - 2;
+        let l = left + last;
+        let r = right + last;
+        triangles.extend([[l, r, l + 1], [r, r + 1, l + 1]]);
+    }
+    (vertices, triangles)
+}
+
 /// Close the visible cut face where each shoulder meets the canyon. The road
 /// ribbon and shoulder collider still use their original physical topology.
 fn cap_bridge_shoulders(
@@ -264,13 +320,29 @@ pub(super) fn spawn(
     images: Option<&mut Assets<Image>>,
 ) {
     let mut rail_ground = super::guardrails::GroundSamples::default();
-    let asphalt = materials.add(Color::srgb(0.16, 0.16, 0.155));
-    let terrain_material = materials.add(StandardMaterial {
+    let asphalt = materials.add(StandardMaterial {
+        base_color: Color::srgb(0.16, 0.16, 0.155),
+        depth_bias: 2.,
+        ..default()
+    });
+    let ground_material = StandardMaterial {
         base_color_texture: images.map(|images| images.add(terrain_grit())),
         perceptual_roughness: 1.,
         ..default()
+    };
+    // Resolve near-coplanar joins without moving the riding or walking surfaces.
+    let terrain_material = materials.add(StandardMaterial {
+        depth_bias: -2.,
+        ..ground_material.clone()
     });
-    for route in 0..2 {
+    let shoulder_materials = [
+        materials.add(ground_material.clone()),
+        materials.add(StandardMaterial {
+            depth_bias: 1.,
+            ..ground_material
+        }),
+    ];
+    for (route, shoulder_material) in shoulder_materials.into_iter().enumerate() {
         let (start, end) = if route == 0 {
             (-300., track.length + 60.)
         } else {
@@ -296,9 +368,18 @@ pub(super) fn spawn(
                 continue;
             }
             let (v, ix) = ribbon(track, route, a, b, track.half_width(a), 0.025);
-            surface(commands, meshes, asphalt.clone(), v, ix, true, None);
+            let bridge_deck = route == 0 && bridge::on_deck((a + b) * 0.5);
+            let resident_ground = |p: Vec3| ground_height(track, p.x, p.z);
+            let render = (!bridge_deck).then(|| {
+                let (shell, shell_triangles) =
+                    road_shell(&v, &ix, resident_ground, route == 0 && b == end);
+                let origin = v[v.len() / 2];
+                let local: Vec<_> = shell.into_iter().map(|p| p - origin).collect();
+                crate::environment::mesh(&local, &shell_triangles)
+            });
+            surface(commands, meshes, asphalt.clone(), v, ix, true, render);
             census.road_chunks += 1;
-            if route == 0 && bridge::on_deck((a + b) * 0.5) {
+            if bridge_deck {
                 // The canyon has no hidden thirty-metre shoulder shelf.
                 a = b;
                 continue;
@@ -326,6 +407,17 @@ pub(super) fn spawn(
                     render_triangles.to_mut(),
                 );
             }
+            let skirt_start = render_vertices.len();
+            let skirt_uv_direction = (v[3] - v[0]).xz().normalize_or_zero();
+            for side in [0, 3] {
+                append_skirt(
+                    v.iter().skip(side).step_by(4).copied(),
+                    resident_ground,
+                    side == 0,
+                    render_vertices.to_mut(),
+                    render_triangles.to_mut(),
+                );
+            }
             let local: Vec<_> = render_vertices.iter().map(|p| *p - origin).collect();
             let mut render = crate::environment::mesh(&local, &render_triangles);
             render.insert_attribute(
@@ -340,7 +432,12 @@ pub(super) fn spawn(
                         } else {
                             0.
                         };
-                        ((p.xz() + cap_uv_direction * drop) * 0.18).to_array()
+                        let direction = if i >= skirt_start {
+                            skirt_uv_direction
+                        } else {
+                            cap_uv_direction
+                        };
+                        ((p.xz() + direction * drop) * 0.18).to_array()
                     })
                     .collect::<Vec<_>>(),
             );
@@ -377,7 +474,7 @@ pub(super) fn spawn(
             surface(
                 commands,
                 meshes,
-                terrain_material.clone(),
+                shoulder_material.clone(),
                 v,
                 ix,
                 false,
@@ -467,6 +564,67 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn road_shell_keeps_the_original_top_and_covers_the_ground_below_it() {
+        let track = Track::hills().unwrap();
+        for (route, station) in [(0, 10878.), (0, 3920.), (1, 6820.)] {
+            let (top, indices) = ribbon(
+                &track,
+                route,
+                station,
+                station + 10.,
+                track.half_width(station),
+                0.025,
+            );
+            let ground = |p: Vec3| ground_height(&track, p.x, p.z);
+            let (shell, faces) = road_shell(&top, &indices, ground, true);
+            assert_eq!(&shell[..top.len()], &top);
+            assert_eq!(&faces[..indices.len()], &indices);
+            for (side, lip) in shell[top.len()..].chunks_exact(top.len()).enumerate() {
+                for (pair, edge) in lip.chunks_exact(2).zip(top.iter().skip(side).step_by(2)) {
+                    assert_eq!(pair[0], *edge);
+                    assert_eq!(pair[1].xz(), edge.xz());
+                    assert!(pair[1].y <= edge.y.min(ground(*edge)) - 0.299);
+                }
+                let [a, b, c] = faces[indices.len() * (side + 1)].map(|i| shell[i as usize]);
+                let outward = track.sample_route(route, station, 0.).1
+                    * Vec3::X
+                    * if side == 0 { 1. } else { -1. };
+                assert!((b - a).cross(c - a).dot(outward) > 0.);
+            }
+            let [a, b, c] = faces[indices.len() * 3].map(|i| shell[i as usize]);
+            assert!((b - a).cross(c - a).y < 0.);
+        }
+    }
+
+    #[test]
+    fn dune_shoulders_extend_below_the_old_visible_seam_without_changing_support() {
+        let track = Track::hills().unwrap();
+        let (top, indices) = shoulders(&track, 0, 10860., 10910.);
+        let mut vertices = top.clone();
+        let mut faces = indices.clone();
+        let ground = |p: Vec3| ground_height(&track, p.x, p.z);
+        let mut largest_old_gap = 0.0_f32;
+        for side in [0, 3] {
+            let start = append_skirt(
+                top.iter().skip(side).step_by(4).copied(),
+                ground,
+                side == 0,
+                &mut vertices,
+                &mut faces,
+            );
+            for pair in vertices[start..].chunks_exact(2) {
+                largest_old_gap = largest_old_gap.max(pair[0].y - ground(pair[0]));
+                assert_eq!(pair[0].xz(), pair[1].xz());
+                assert!(pair[1].y <= ground(pair[0]) - 0.299);
+            }
+        }
+        assert_eq!(&vertices[..top.len()], &top);
+        assert_eq!(&faces[..indices.len()], &indices);
+        println!("old exposed shoulder gap near the dunes: {largest_old_gap:.2} m");
+        assert!(largest_old_gap > 0.2);
+    }
+
     #[test]
     fn bridge_retaining_faces_join_the_exact_shoulder_lips_and_face_the_span() {
         let track = Track::hills().unwrap();

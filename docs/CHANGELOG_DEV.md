@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-15 — Hills road and shoulder thickness (ADR206)
+
+- Enclosed the asphalt and dirt shoulder edges below the existing riding surface.
+- Separated nearly coplanar road, shoulder, and terrain depth.
+
 ## 2026-11-15 — Hills contact, deck and scenery (ADR205)
 
 - Added descending rider contacts and increased lateral kick knockback.

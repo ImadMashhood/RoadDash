@@ -197,7 +197,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**254 verified tasks complete; 382 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**255 verified tasks complete; 382 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -215,9 +215,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 254 verified complete |
+| [00](#part-00) | Completed and verified foundations | 255 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
-| [00](#part-00) | Completed and verified foundations | 254 verified complete |
+| [00](#part-00) | Completed and verified foundations | 255 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
@@ -240,7 +240,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 ### Part 00 — Completed and verified foundations
 
 <details>
-<summary>Recent verification audit — 20 completed tasks</summary>
+<summary>Recent verification audit — 21 completed tasks</summary>
+
+- [x] **HILLS-ROAD-DEPTH-01** Close visible gaps below the Hills asphalt and dirt shoulders. This Part 06 task builds on HILLS-BRIDGE-FLOOR-01 and the resident terrain mesh. Verify buried render walls, stable overlap ordering, and unchanged top geometry and collision in the dunes and on both routes. [Evidence](docs/testing/hills-road-thickness/REPORT.md).
 
 - [x] **RIDER-LANDING-01** Wipe out a mounted rider who lands on another mounted rider. This Part 01 task builds on existing rear contacts and recovery. An actual descending contact must eject the upper rider while preserving ordinary side impacts. Verified through contact rules and a physical rig test. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
 
