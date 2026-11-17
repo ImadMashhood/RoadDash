@@ -1,11 +1,12 @@
 {
-  "date": "2026-11-12",
+  "date": "2026-11-16",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "ART-LOCAL-PREVIEW-01",
         "RACE-FINISH-01",
         "RACE-RIDEOVER-01",
         "HILLS-BEND-01",
@@ -353,6 +354,7 @@
     "02": {
       "title": "Animation A — reference study, labeled keyframes and pose approval",
       "task_ids": [
+        "MENU-RIDER-01",
         "V2-02-001",
         "V2-02-002",
         "V2-02-003",

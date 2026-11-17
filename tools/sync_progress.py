@@ -11,7 +11,12 @@ def render(text,source_dir=None):
     source_dir=source_dir or ROOT
     result=[]
     for line in text.splitlines():
-        if line.startswith('### '):result.append(line)
+        if line.startswith('### Part 00'):
+            result.extend([line,'<details><summary>Completed and verified tasks</summary>'])
+        elif line.startswith('### Part 01'):
+            result.extend(['</details>',line])
+        elif line.startswith('### '):
+            result.append(line)
         elif TASK.match(line):
             def link(match):
                 target=match.group(1)

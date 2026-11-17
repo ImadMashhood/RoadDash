@@ -339,6 +339,12 @@ pub(crate) fn initialize(world: &mut World) {
         for _ in 11..16 {
             entities.push(world.spawn_empty().id());
         }
+        let preview_helmet = world
+            .get::<crate::game::Rider>(owner)
+            .filter(|rider| !rider.police)
+            .and_then(|_| world.get_resource::<crate::world::Art>())
+            .and_then(|art| art.models.as_ref())
+            .and_then(crate::models::AuthoredModels::preview_helmet_collider);
         for (i, &e) in entities.iter().enumerate() {
             let t = poses[i];
             let v = Velocity {
@@ -353,7 +359,11 @@ pub(crate) fn initialize(world: &mut World) {
                 },
                 t,
                 RigidBody::Dynamic,
-                shape(s[i]),
+                if i == 1 {
+                    preview_helmet.clone().unwrap_or_else(|| shape(s[i]))
+                } else {
+                    shape(s[i])
+                },
                 ColliderMassProperties::Mass(settings.config.masses[i]),
                 v,
                 Damping {
