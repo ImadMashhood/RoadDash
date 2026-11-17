@@ -222,11 +222,11 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 257 verified complete |
+| [00](#part-00) | Completed and verified foundations | 258 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
-| [00](#part-00) | Completed and verified foundations | 257 verified complete |
+| [00](#part-00) | Completed and verified foundations | 258 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
-| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
+| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 16 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
