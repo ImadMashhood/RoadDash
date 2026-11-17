@@ -2471,3 +2471,6 @@ Combined isolated Bevy 0.20.1 branches for mounted animal support/impact present
 
 Coarsen road aggregate and add mottled meadow shading and exposed rock on
 steep Hills faces. The native Hills survey captured eleven views.
+
+
+2026-11-16 — Added the local native rider preview, fitted its helmet crash hitbox and folded completed checklist work. [Evidence](RIDER_PREVIEW.md).

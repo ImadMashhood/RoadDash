@@ -204,7 +204,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**257 verified tasks complete; 386 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**258 verified tasks complete; 387 tasks remain open.** Completed work is folded below. Open requirements retain their stable IDs and acceptance checks.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -222,11 +222,11 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 257 verified complete |
+| [00](#part-00) | Completed and verified foundations | 258 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
-| [00](#part-00) | Completed and verified foundations | 257 verified complete |
+| [00](#part-00) | Completed and verified foundations | 258 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
-| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
+| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 16 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
@@ -242,9 +242,26 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [15](#part-15) | Presentation, audio, UI and accessibility | 37 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
+The remaining checklist is grouped by the next decision or deliverable:
+
+- **Finish the ride and crash feel.** Close the outstanding steering, contact, recovery and rival behavior checks in [Part 01](#part-01).
+- **Finish the rider.** Review the local model and correctly fitted contacts in game. Resolve asset distribution, complete gear variants and measure a full grid before promoting the model. See [Parts 02 and 03](#part-02).
+- **Finish the race world.** Complete building and prop coverage, pedestrian and landscape behavior, weapons and police in [Parts 04–08](#part-04).
+- **Make the slice ready to share.** Complete the vertical-slice playtest and networking spike, then the remaining production and platform gates in [Parts 09–16](#part-09).
+
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
+
+<details>
+<summary>Completed and verified tasks</summary>
+
+<details>
+<summary>Local rider review</summary>
+
+- [x] **ART-LOCAL-PREVIEW-01** Review a locally supplied replacement rider using the native skin and a fitted helmet crash hitbox. Reason: inspect the model and contact shape on the bike; part:02; dependencies: ART-03 and a locally baked standing/seated mesh; acceptance: opt-in native visuals, measured helmet hull and Hills crash/recovery/remount; verification: locked build and native smoke fixture. [Preview and evidence](docs/RIDER_PREVIEW.md).
+
+</details>
 
 <details>
 <summary>Recent verification audit — 21 completed tasks</summary>
@@ -746,7 +763,7 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 </details>
 
-<a id="part-01"></a>
+
 
 <details>
 <summary>Architectural district organization — 1 verified task</summary>
@@ -774,6 +791,10 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 - [x] **RFU-AI-07** Define combat, passing, avoidance and race-progress priorities. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: explicit radius, eligibility, target/side hysteresis and forward preference; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
 
 </details>
+
+</details>
+
+<a id="part-01"></a>
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
@@ -945,6 +966,8 @@ Part 02 delivers the complete use-case catalog, original numbered pose files, co
 <a id="part-02"></a>
 
 ### Part 02 — Animation A — reference study, labeled keyframes and pose approval
+
+- [ ] **MENU-RIDER-01** Finalize the replacement rider for distribution. Reason: the approved style needs a game-ready character; part:02; dependencies: ART-03 and the local preview; acceptance: cleared distributable art, reviewed gear variants and in-game contact, production LOD and full-grid performance; verification: native riding, recovery, gear selection and matched release captures. [Local preview](docs/RIDER_PREVIEW.md).
 
 <!-- DEVELOPMENT_PASS_02 -->
 <details>

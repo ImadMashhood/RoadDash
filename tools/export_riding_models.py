@@ -80,32 +80,33 @@ def export_mesh(obj, prefix, skinned):
         buffers.extend([vb,ib])
     ob.to_mesh_clear()
 
-bpy.ops.wm.read_factory_settings(use_empty=True)
-bpy.ops.import_scene.gltf(filepath=str(ROOT/'art/source/rider.glb'))
-rig=next(o for o in bpy.context.scene.objects if o.type=='ARMATURE')
-rider=next(o for o in bpy.context.scene.objects if o.type=='MESH')
-for p in rig.pose.bones:p.matrix_basis=Matrix.Identity(4)
-for side,s in [('L',1),('R',-1)]:
-    for name,axis,angle in [('upper_arm.'+side,(0,1,0),s*math.radians(72)),('forearm.'+side,(0,0,1),s*math.radians(-7))]:
-        b=rig.data.bones[name].matrix_local.to_quaternion()
-        rig.pose.bones[name].rotation_quaternion=b.inverted() @ Quaternion(axis,angle) @ b
-bpy.context.view_layer.update();capture_bindings('standing',rig);export_mesh(rider,'standing',True)
-pose=json.loads((ROOT/'art/source/seated-0003.json').read_text())
-rig.matrix_basis=Matrix(pose['rig_matrix'])
-for name,rows in pose['bone_basis'].items():rig.pose.bones[name].matrix_basis=Matrix(rows)
-bpy.context.view_layer.update();capture_bindings('seated',rig);export_mesh(rider,'seated',True)
-bpy.ops.import_scene.gltf(filepath=str(ROOT/'art/source/motorcycle.glb'))
-for obj in list(bpy.context.scene.objects):
-    if obj.type!='MESH' or obj==rider or any(c.name=='glTF_not_exported' for c in obj.users_collection):continue
-    group='front-wheel' if obj.name=='Front_Wheel_Pivot_Geometry' else 'rear-wheel' if obj.name=='Rear_Wheel_Pivot_Geometry' else 'motorcycle'
-    export_mesh(obj,group,False)
-manifest={'version':1,'scale':SCALE,'visual_offset_y':.03,'vertex_stride_bytes':56,'records':records,'physics_data':False}
-header=json.dumps(manifest,separators=(',',':')).encode()
-output=ROOT/'assets/models/riding.rdmesh'
-output.write_bytes(b'RDMESH01'+struct.pack('<I',len(header))+header+b''.join(buffers))
-(ROOT/'art/export-report.json').write_text(json.dumps({'mesh_records':len(records),'triangles':sum(r['indices']//3 for r in records),'bytes':output.stat().st_size,'source_scale':SCALE,'physics_changed':False,'records':records},indent=2))
-print('EXPORTED',output,len(records),flush=True)
+if __name__ == '__main__':
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+    bpy.ops.import_scene.gltf(filepath=str(ROOT/'art/source/rider.glb'))
+    rig=next(o for o in bpy.context.scene.objects if o.type=='ARMATURE')
+    rider=next(o for o in bpy.context.scene.objects if o.type=='MESH')
+    for p in rig.pose.bones:p.matrix_basis=Matrix.Identity(4)
+    for side,s in [('L',1),('R',-1)]:
+        for name,axis,angle in [('upper_arm.'+side,(0,1,0),s*math.radians(72)),('forearm.'+side,(0,0,1),s*math.radians(-7))]:
+            b=rig.data.bones[name].matrix_local.to_quaternion()
+            rig.pose.bones[name].rotation_quaternion=b.inverted() @ Quaternion(axis,angle) @ b
+    bpy.context.view_layer.update();capture_bindings('standing',rig);export_mesh(rider,'standing',True)
+    pose=json.loads((ROOT/'art/source/seated-0003.json').read_text())
+    rig.matrix_basis=Matrix(pose['rig_matrix'])
+    for name,rows in pose['bone_basis'].items():rig.pose.bones[name].matrix_basis=Matrix(rows)
+    bpy.context.view_layer.update();capture_bindings('seated',rig);export_mesh(rider,'seated',True)
+    bpy.ops.import_scene.gltf(filepath=str(ROOT/'art/source/motorcycle.glb'))
+    for obj in list(bpy.context.scene.objects):
+        if obj.type!='MESH' or obj==rider or any(c.name=='glTF_not_exported' for c in obj.users_collection):continue
+        group='front-wheel' if obj.name=='Front_Wheel_Pivot_Geometry' else 'rear-wheel' if obj.name=='Rear_Wheel_Pivot_Geometry' else 'motorcycle'
+        export_mesh(obj,group,False)
+    manifest={'version':1,'scale':SCALE,'visual_offset_y':.03,'vertex_stride_bytes':56,'records':records,'physics_data':False}
+    header=json.dumps(manifest,separators=(',',':')).encode()
+    output=ROOT/'assets/models/riding.rdmesh'
+    output.write_bytes(b'RDMESH01'+struct.pack('<I',len(header))+header+b''.join(buffers))
+    (ROOT/'art/export-report.json').write_text(json.dumps({'mesh_records':len(records),'triangles':sum(r['indices']//3 for r in records),'bytes':output.stat().st_size,'source_scale':SCALE,'physics_changed':False,'records':records},indent=2))
+    print('EXPORTED',output,len(records),flush=True)
 
-bindings['version']=1
-bindings['parents']=[2,0,-1,0,3,0,5,2,7,2,9]
-(ROOT/'assets/models/rider-bindings.json').write_text(json.dumps(bindings,indent=2)+'\n')
+    bindings['version']=1
+    bindings['parents']=[2,0,-1,0,3,0,5,2,7,2,9]
+    (ROOT/'assets/models/rider-bindings.json').write_text(json.dumps(bindings,indent=2)+'\n')

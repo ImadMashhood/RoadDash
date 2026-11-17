@@ -1501,3 +1501,6 @@ remain open under RFU-FX-01.
 Local Hills sky coverage is addressed. RFU-SKY-05 retains the wider map scope
 and the release GPU and frame-time gate.
 [Evidence](testing/hills-cloud-field/REPORT.md).
+
+
+The replacement rider remains a local preview pending distributable art, gear variants, detailed contact review and release performance. [Preview scope](RIDER_PREVIEW.md).

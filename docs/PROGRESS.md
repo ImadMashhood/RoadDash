@@ -1,5 +1,7 @@
 # Development progress
 
+2026-11-16 Native local rider and helmet hitbox (ART-LOCAL-PREVIEW-01). The local model passed the Hills crash and remount fixture. [Setup and acceptance](RIDER_PREVIEW.md). Production promotion remains open.
+
 2026-11-15 Hills tree clearance and soil spray (ADR215). Applied crown spacing and slope checks across tree layers, supplied town and backdrop detail tiers, and corrected grass tire dust.
 [Evidence](testing/hills-tree-clearance/REPORT.md).
 
@@ -639,6 +641,10 @@ pending terrain and crossing verification gates.
 
 ### Part 00 — Completed and verified foundations
 
+<details><summary>Completed and verified tasks</summary>
+
+- [x] **ART-LOCAL-PREVIEW-01** Review a locally supplied replacement rider using the native skin and a fitted helmet crash hitbox. Reason: inspect the model and contact shape on the bike; part:02; dependencies: ART-03 and a locally baked standing/seated mesh; acceptance: opt-in native visuals, measured helmet hull and Hills crash/recovery/remount; verification: locked build and native smoke fixture. [Preview and evidence](RIDER_PREVIEW.md).
+
 - [x] **HILLS-ROAD-DEPTH-01** Close visible gaps below the Hills asphalt and dirt shoulders. This Part 06 task builds on HILLS-BRIDGE-FLOOR-01 and the resident terrain mesh. Verify buried render walls, stable overlap ordering, and unchanged top geometry and collision in the dunes and on both routes. [Evidence](testing/hills-road-thickness/REPORT.md).
 
 - [x] **RIDER-LANDING-01** Wipe out a mounted rider who lands on another mounted rider. This Part 01 task builds on existing rear contacts and recovery. An actual descending contact must eject the upper rider while preserving ordinary side impacts. Verified through contact rules and a physical rig test. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
@@ -1153,6 +1159,8 @@ pending terrain and crossing verification gates.
 
 - [x] **RFU-AI-07** Define combat, passing, avoidance and race-progress priorities. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: explicit radius, eligibility, target/side hysteresis and forward preference; verification: [rules, physical regressions and native decision receipts](testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
 
+</details>
+
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
 - [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Stopped semitrailer and rider log](testing/hills-slope-infill/REPORT.md). [Earlier evidence](testing/hills-contact-and-scenery/REPORT.md).
@@ -1320,6 +1328,8 @@ pending terrain and crossing verification gates.
 ### Research, labels and deliverables
 
 ### Part 02 — Animation A — reference study, labeled keyframes and pose approval
+
+- [ ] **MENU-RIDER-01** Finalize the replacement rider for distribution. Reason: the approved style needs a game-ready character; part:02; dependencies: ART-03 and the local preview; acceptance: cleared distributable art, reviewed gear variants and in-game contact, production LOD and full-grid performance; verification: native riding, recovery, gear selection and matched release captures. [Local preview](RIDER_PREVIEW.md).
 
 - [ ] **V2-02-001** Build a complete animation/use-case catalog. ANIM-14 resumes source-to-runtime coverage review; unresolved caller/timing and full pose approval remain open. See [next review](animation/NEXT_REVIEW.md).
 

@@ -5114,3 +5114,6 @@ Reserve crowns across the combined tree placement layers. Reject steep terrain
 and add missing town and backdrop detail tiers from the authored families.
 Limit backdrop promotion to one tile per update. Use a warm soil tint for
 loose grass tire spray. [Evidence](testing/hills-tree-clearance/REPORT.md).
+
+
+Local replacement rider preview. Use an explicit local bundle with the stock animation bindings, and fit the anatomical crash helmet hull from the supplied head-weighted vertices. The standard rider and baseline rig retain their existing contacts. [Evidence](RIDER_PREVIEW.md).

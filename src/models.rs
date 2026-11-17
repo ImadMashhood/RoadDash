@@ -55,6 +55,7 @@ pub struct AuthoredModels {
     textures: Vec<Handle<Image>>,
     standing_frames: [Transform; 16],
     seated_frames: [Transform; 16],
+    preview_helmet: Option<bevy_rapier3d::prelude::Collider>,
 }
 #[derive(Component)]
 pub struct AuthoredHuman;
@@ -71,7 +72,7 @@ impl AuthoredModels {
         meshes: &mut Assets<Mesh>,
         materials: &mut Assets<StandardMaterial>,
         binds: &mut Assets<SkinnedMeshInverseBindposes>,
-        _images: &mut Assets<Image>,
+        images: &mut Assets<Image>,
         server: Option<&AssetServer>,
     ) -> Self {
         let bindings = rr_content::riding_model::Bindings::from_json(include_str!(
@@ -105,29 +106,115 @@ impl AuthoredModels {
                 })
                 .load("textures/rider-roughness.png")
         });
+        // Local art review uses a separate bundle and texture selected at launch.
+        let preview = server.and_then(|_| {
+            let directory = std::path::PathBuf::from(std::env::var_os("ROADDASH_RIDER_PREVIEW")?);
+            let result = (|| {
+                use bevy::image::{CompressedImageFormats, ImageSampler, ImageType};
+                let bytes = std::fs::read(directory.join("preview.rdmesh")).ok()?;
+                let mut parts = rr_content::riding_model::decode(&bytes).ok()?;
+                if parts.len() != 2
+                    || !["standing", "seated"]
+                        .into_iter()
+                        .all(|group| parts.iter().any(|part| part.group == group))
+                {
+                    return None;
+                }
+                for part in &mut parts {
+                    part.name = format!("hunyuan-preview-{}", part.group);
+                }
+                let png = std::fs::read(directory.join("rider-base-color.png")).ok()?;
+                let image = Image::from_buffer(
+                    &png,
+                    ImageType::Extension("png"),
+                    CompressedImageFormats::NONE,
+                    true,
+                    ImageSampler::linear(),
+                    RenderAssetUsages::default(),
+                )
+                .ok()?;
+                Some((parts, images.add(image)))
+            })();
+            if result.is_none() {
+                warn!(?directory, "Could not load the local rider preview");
+            } else {
+                info!(?directory, "Loaded the local Hunyuan rider preview");
+            }
+            result
+        });
+        let (preview_parts, preview_texture) = match preview {
+            Some((parts, texture)) => (parts, Some(texture)),
+            None => (Vec::new(), None),
+        };
+        let preview_helmet = preview_parts
+            .iter()
+            .find(|part| part.group == "standing")
+            .and_then(|part| {
+                let origin = human::SPECS[1].0;
+                let points: Vec<_> = part
+                    .positions
+                    .iter()
+                    .zip(&part.joints)
+                    .zip(&part.weights)
+                    .filter_map(|((position, joints), weights)| {
+                        let p = Vec3::from_array(*position);
+                        let head_weight: f32 = joints
+                            .iter()
+                            .zip(weights)
+                            .filter_map(|(&joint, &weight)| (joint == 1).then_some(weight))
+                            .sum();
+                        (head_weight > 0.8 && p.y >= standing_frames[1].translation.y)
+                            .then_some(p - origin)
+                    })
+                    .collect();
+                let lo = points
+                    .iter()
+                    .copied()
+                    .fold(Vec3::splat(f32::INFINITY), Vec3::min);
+                let hi = points
+                    .iter()
+                    .copied()
+                    .fold(Vec3::splat(f32::NEG_INFINITY), Vec3::max);
+                let size = hi - lo;
+                if !size.cmpge(Vec3::splat(0.12)).all()
+                    || !size.cmple(Vec3::splat(0.55)).all()
+                    || lo.abs().max(hi.abs()).max_element() > 0.55
+                {
+                    return None;
+                }
+                let collider = bevy_rapier3d::prelude::Collider::convex_hull(&points)?;
+                eprintln!("Local rider preview helmet hitbox: {size:?}");
+                Some(collider)
+            });
         let hand_contacts = hands::config();
         let mut parts = Vec::new();
-        let decoded = decoded.into_iter().flat_map(|mut data| {
-            if matches!(data.group.as_str(), "standing" | "seated") {
-                let standing = data.group == "standing";
-                articulation::weights(
-                    &mut data,
-                    if standing {
-                        &standing_frames
-                    } else {
-                        &seated_frames
-                    },
-                );
-            }
-            if matches!(data.group.as_str(), "standing" | "seated")
-                && data.material.region == "body"
-            {
-                hands::split(data)
-            } else {
-                vec![data]
-            }
-        });
+        let decoded = decoded
+            .into_iter()
+            .chain(preview_parts)
+            .flat_map(|mut data| {
+                let preview = data.name.starts_with("hunyuan-preview-");
+                if matches!(data.group.as_str(), "standing" | "seated") {
+                    let standing = data.group == "standing";
+                    articulation::weights(
+                        &mut data,
+                        if standing {
+                            &standing_frames
+                        } else {
+                            &seated_frames
+                        },
+                    );
+                }
+                if matches!(data.group.as_str(), "standing" | "seated")
+                    && !preview
+                    && data.material.region == "body"
+                {
+                    hands::split(data)
+                } else {
+                    vec![data]
+                }
+            });
         for mut data in decoded {
+            let preview = data.name.starts_with("hunyuan-preview-");
             if data.name.ends_with("-gloves") {
                 hands::refine(&mut data);
             }
@@ -183,7 +270,7 @@ impl AuthoredModels {
                 mesh.set_morph_targets(targets);
             }
             let region = &data.material.region;
-            let painted_leather = skinned && region == "body" && !has_glove;
+            let painted_leather = skinned && !preview && region == "body" && !has_glove;
             let variants =
                 if painted_leather || matches!(region.as_str(), "shirt" | "helmet" | "paint") {
                     15
@@ -199,7 +286,13 @@ impl AuthoredModels {
                     _ if painted_leather => swatch(gear::LEATHER[color]),
                     _ => Color::WHITE,
                 };
-                let mat = if skinned {
+                let mat = if preview {
+                    StandardMaterial {
+                        base_color_texture: preview_texture.clone(),
+                        perceptual_roughness: 0.74,
+                        ..default()
+                    }
+                } else if skinned {
                     StandardMaterial {
                         base_color: tint,
                         base_color_texture: if painted_leather {
@@ -246,7 +339,7 @@ impl AuthoredModels {
             }
             parts.push(Part {
                 officer_material: materials.add(officer),
-                gear: skinned.then_some(match region.as_str() {
+                gear: (skinned && !preview).then_some(match region.as_str() {
                     "helmet" => gear::PartKind::Shell,
                     "visor" => gear::PartKind::Visor,
                     _ => gear::PartKind::Suit,
@@ -254,7 +347,7 @@ impl AuthoredModels {
                 officer_hidden: data.name.contains("Smoked windscreen"),
                 mesh: meshes.add(mesh),
                 materials: palette,
-                group: data.group,
+                group: if preview { data.name } else { data.group },
                 rest,
                 glove: has_glove,
             });
@@ -285,8 +378,13 @@ impl AuthoredModels {
             )),
             standing_frames,
             seated_frames,
+            preview_helmet,
         }
     }
+    pub(crate) fn preview_helmet_collider(&self) -> Option<bevy_rapier3d::prelude::Collider> {
+        self.preview_helmet.clone()
+    }
+
     pub(crate) fn physical_frames(&self, physical: &[Transform]) -> Option<[Transform; 16]> {
         let input: [Transform; 11] = physical.get(..11)?.try_into().ok()?;
         let source: [Transform; 11] = self.standing_frames[..11].try_into().unwrap();
@@ -409,11 +507,24 @@ impl AuthoredModels {
             });
         hands::sockets(commands, &skin_joints, seated, &self.hand_contacts);
         let mut gear_parts = Vec::new();
+        let standard_group = if seated { "seated" } else { "standing" };
+        let preview_group = if seated {
+            "hunyuan-preview-seated"
+        } else {
+            "hunyuan-preview-standing"
+        };
+        let group = if color != OFFICER_PALETTE
+            && self.parts.iter().any(|part| part.group == preview_group)
+        {
+            preview_group
+        } else {
+            standard_group
+        };
         for (index, p) in self
             .parts
             .iter()
             .enumerate()
-            .filter(|(_, p)| p.group == if seated { "seated" } else { "standing" })
+            .filter(|(_, p)| p.group == group)
         {
             let mesh = commands
                 .spawn((
@@ -461,6 +572,7 @@ impl AuthoredModels {
             .iter()
             .filter(|p| {
                 !matches!(p.group.as_str(), "standing" | "seated")
+                    && !p.group.starts_with("hunyuan-preview-")
                     && (p.group != "patrol-equipment" || color == OFFICER_PALETTE)
                     && !(p.officer_hidden && color == OFFICER_PALETTE)
             })
